@@ -9,23 +9,31 @@ import {registerLocaleData} from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
 import {SharedModule} from './main/shared/shared.module';
 import {AuthorizationInterceptor} from './main/shared/authorization.interceptor';
+import {REGISTRATION_URL_TOKEN} from './authorization/data/impl/RegistrationService';
+import {BoardDatePipe} from './main/pipe/board-date.pipe';
+import {BOARD_URL_TOKEN} from './main/data/impl/BoardService';
 
 
 registerLocaleData(localeRu);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BoardDatePipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true},
+    {provide: REGISTRATION_URL_TOKEN, useValue: 'http://localhost:8082/regitration'},
+    {provide: BOARD_URL_TOKEN, useValue: 'http://localhost:8082/board'},
 
   ],
   bootstrap: [AppComponent]
