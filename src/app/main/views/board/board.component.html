@@ -144,7 +144,7 @@
           <ng-container matColumnDef="author">
             <th *matHeaderCellDef mat-header-cell>Автор</th>
             <td *matCellDef="let boards" class="col-facility" mat-cell>
-              {{boards.author}}
+              {{boards.user.lastName}}
             </td>
           </ng-container>
 
