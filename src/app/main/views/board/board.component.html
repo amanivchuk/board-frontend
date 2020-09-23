@@ -112,7 +112,12 @@
           <ng-container matColumnDef="picture">
             <th *matHeaderCellDef mat-header-cell>Картинка</th>
             <td *matCellDef="let boards" class="col-tab-number" mat-cell>
-              {{boards.picture}}
+              <!--              {{boards.picture}}-->
+              <div class="card-avatar">
+                <a href="javascript:;">
+                  <img src="{{'data:image/jpeg;base64,'+ boards.picture}}">
+                </a>
+              </div>
             </td>
           </ng-container>
 

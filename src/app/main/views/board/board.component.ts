@@ -3,6 +3,10 @@ import {BoardSearchValues} from '../../data/SearchObjects';
 import {Board} from '../../model/Board';
 import {MatTableDataSource} from '@angular/material/table';
 import {PageEvent} from '@angular/material/paginator';
+import {DialogAction} from '../../object/DialogResult';
+import {AddBoardDialogComponent} from '../../dialog/add-board-dialog/add-board-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
+import {BoardCreateDto} from '../../data/dto/BoardCreateDto';
 
 @Component({
   selector: 'app-board',
@@ -22,6 +26,8 @@ export class BoardComponent implements OnInit {
   searchAction = new EventEmitter<BoardSearchValues>();
   @Output()
   toggleSearch = new EventEmitter<boolean>(); //показать/скрыть поиск
+  @Output()
+  addBoard = new EventEmitter<BoardCreateDto>();
 
   readonly defaultSortColumn = 'title';
   readonly defaultSortDirection = 'asc';
@@ -43,7 +49,9 @@ export class BoardComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'picture', 'title', 'text', 'dateAdd', 'author', 'operations'];
 
-  constructor() {
+  constructor(
+    private dialog: MatDialog
+  ) {
   }
 
   @Input('boardSearchValues')
@@ -145,7 +153,21 @@ export class BoardComponent implements OnInit {
 
 
   openAddAdvertDialog() {
+    const dialogRef = this.dialog.open(AddBoardDialogComponent, {
+      data: [new BoardCreateDto('', null, '', null),
+        'Добавление нового объявления'],
+      width: '600px'
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (!(result)) {
+        return;
+      }
+
+      if (result.action === DialogAction.SAVE) {
+        this.addBoard.emit(result.obj as BoardCreateDto);
+      }
+    });
   }
 
   openAdvertContent(boards: any) {

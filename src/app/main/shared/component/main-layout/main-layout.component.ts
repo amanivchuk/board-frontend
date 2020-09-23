@@ -4,6 +4,7 @@ import {Board} from '../../../model/Board';
 import {SpinnerService} from '../../../service/spinner.service';
 import {BoardService} from '../../../data/impl/BoardService';
 import {PageEvent} from '@angular/material/paginator';
+import {BoardCreateDto} from '../../../data/dto/BoardCreateDto';
 
 @Component({
   selector: 'app-main-layout',
@@ -36,7 +37,7 @@ export class MainLayoutComponent implements OnInit {
     this.boardService.findAdvert(this.boardSearchValues).subscribe(result => {
       this.totalBoardFounded = result.totalElements;
       this.boards = result.content;
-    });
+    })
   }
 
   paging(pageEvent: PageEvent) {
@@ -55,5 +56,11 @@ export class MainLayoutComponent implements OnInit {
   //показать-скрыть поиск
   toggleSearch(showSearch: boolean) {
     this.showSearch = showSearch;
+  }
+
+  addBoard(boardCreateDto: BoardCreateDto) {
+    this.boardService.addBoard(boardCreateDto).subscribe(() => {
+      this.searchBoard(this.boardSearchValues);//обновляем список сотрудников
+    });
   }
 }

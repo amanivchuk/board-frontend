@@ -5,6 +5,7 @@ import {CommonService} from './CommonService';
 import {Board} from '../../model/Board';
 import {BoardDAO} from '../interface/BoardDAO';
 import {BoardSearchValues} from '../SearchObjects';
+import {BoardCreateDto} from '../dto/BoardCreateDto';
 
 export const BOARD_URL_TOKEN = new InjectionToken<string>('url');
 
@@ -24,5 +25,9 @@ export class BoardService extends CommonService<Board> implements BoardDAO {
 
   findAdvert(boardSearchValues: BoardSearchValues): Observable<any> {
     return this.httpClient.post<Board[]>(this.baseUrl + '/search', boardSearchValues);
+  }
+
+  addBoard(boardCreateDto: BoardCreateDto): Observable<any> {
+    return this.httpClient.post<BoardCreateDto>(this.baseUrl, boardCreateDto);
   }
 }

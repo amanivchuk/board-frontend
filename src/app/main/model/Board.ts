@@ -6,10 +6,10 @@ export class Board {
   picture: any;
   text: string;
   dateAdd: Date;
-  user: User;
+  user?: User;
 
 
-  constructor(id: number, title: string, picture: any, text: string, dateAdd: Date, user: User) {
+  constructor(id: number, title: string, picture: any, text: string, dateAdd: Date, user?: User) {
     this.id = id;
     this.title = title;
     this.picture = picture;

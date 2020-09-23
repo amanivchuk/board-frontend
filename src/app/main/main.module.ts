@@ -15,6 +15,9 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatInputModule} from '@angular/material/input';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {AddBoardDialogComponent} from './dialog/add-board-dialog/add-board-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,7 @@ import {MatInputModule} from '@angular/material/input';
     HeaderComponent,
     FooterComponent,
     BoardComponent,
+    AddBoardDialogComponent,
   ],
   imports: [
     RouterModule.forChild([
@@ -29,6 +33,7 @@ import {MatInputModule} from '@angular/material/input';
     ]),
     CommonModule,
     FormsModule,
+    MatDialogModule,
     ReactiveFormsModule,
     MatIconModule,
     MatButtonModule,
@@ -38,6 +43,7 @@ import {MatInputModule} from '@angular/material/input';
     MatSortModule,
     MatPaginatorModule,
     MatInputModule,
+    MatProgressSpinnerModule,
   ],
   exports: [RouterModule],
   providers: [],
