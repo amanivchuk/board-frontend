@@ -18,6 +18,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {AddBoardDialogComponent} from './dialog/add-board-dialog/add-board-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {EditProfileDialogComponent} from './dialog/edit-profile-dialog/edit-profile-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     FooterComponent,
     BoardComponent,
     AddBoardDialogComponent,
+    EditProfileDialogComponent,
   ],
   imports: [
     RouterModule.forChild([
