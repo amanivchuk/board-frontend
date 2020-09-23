@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {User} from '../../model/User';
 import {DialogAction, DialogResult} from '../../object/DialogResult';
+import {UserCreateDto} from '../../../main/data/dto/UserCreateDto';
 
 @Component({
   selector: 'app-registration-dialog',
@@ -10,18 +10,19 @@ import {DialogAction, DialogResult} from '../../object/DialogResult';
 })
 export class RegistrationDialogComponent implements OnInit {
 
-  user: User;
+  user: UserCreateDto;
   dialogTitle: string;
 
   newLastName: string = '';
   newFirstName: string = '';
   newEmail: string = '';
   newPassword: string = '';
+  confirmNewPassword: string = '';
 
 
   constructor(
     private dialogRef: MatDialogRef<RegistrationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: [User, string],
+    @Inject(MAT_DIALOG_DATA) private data: [UserCreateDto, string],
     private dialog: MatDialog
   ) {
   }
@@ -52,6 +53,12 @@ export class RegistrationDialogComponent implements OnInit {
       return true;
     }
     if (this.newPassword.length === 0) {
+      return true;
+    }
+    if (this.confirmNewPassword.length === 0) {
+      return true;
+    }
+    if (this.newPassword !== this.confirmNewPassword) {
       return true;
     }
     if (this.newEmail.length === 0) {

@@ -22,6 +22,11 @@ import {EditProfileDialogComponent} from './dialog/edit-profile-dialog/edit-prof
 import {MatMenuModule} from '@angular/material/menu';
 import {EditEmailDialogComponent} from './dialog/edit-email-dialog/edit-email-dialog.component';
 import {ConfirmPasswordDialogComponent} from './dialog/confirm-password-dialog/confirm-password-dialog.component';
+import {EditPasswordDialogComponent} from './dialog/edit-password-dialog/edit-password-dialog.component';
+import {MatCardModule} from '@angular/material/card';
+import {EditBoardDialogComponent} from './dialog/edit-board-dialog/edit-board-dialog.component';
+import {ShowBoardDialogComponent} from './dialog/show-board-dialog/show-board-dialog.component';
+import {ConfirmDialogComponent} from './dialog/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +38,10 @@ import {ConfirmPasswordDialogComponent} from './dialog/confirm-password-dialog/c
     EditProfileDialogComponent,
     EditEmailDialogComponent,
     ConfirmPasswordDialogComponent,
+    EditPasswordDialogComponent,
+    EditBoardDialogComponent,
+    ShowBoardDialogComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     RouterModule.forChild([
@@ -52,6 +61,7 @@ import {ConfirmPasswordDialogComponent} from './dialog/confirm-password-dialog/c
     MatInputModule,
     MatProgressSpinnerModule,
     MatMenuModule,
+    MatCardModule,
   ],
   exports: [RouterModule],
   providers: [],

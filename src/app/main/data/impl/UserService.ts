@@ -6,6 +6,7 @@ import {UserDAO} from '../interface/UserDAO';
 import {UserUpdateDto} from '../dto/UserUpdateDto';
 import {Observable} from 'rxjs';
 import {UserUpdateEmailDto} from '../dto/UserUpdateEmailDto';
+import {UserUpdatePasswordDto} from '../dto/UserUpdatePasswordDto';
 
 export const USER_URL_TOKEN = new InjectionToken<string>('url');
 
@@ -29,5 +30,9 @@ export class UserService extends CommonService<User> implements UserDAO {
 
   updateEmail(userUpdateEmailDto: UserUpdateEmailDto): Observable<any> {
     return this.httpClient.put(this.baseUrl + '/email', userUpdateEmailDto);
+  }
+
+  updatePassword(userUpdatePasswordDto: UserUpdatePasswordDto, id: number): Observable<any> {
+    return this.httpClient.put(this.baseUrl + '/password/' + id, userUpdatePasswordDto);
   }
 }

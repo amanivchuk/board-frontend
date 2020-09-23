@@ -1,14 +1,16 @@
 export class UserCreateDto {
-  title: string;
-  picture: any;
-  text: string;
-  dateAdd: Date;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  userRole: string;
 
 
-  constructor(title: string, picture: any, text: string, dateAdd: Date) {
-    this.title = title;
-    this.picture = picture;
-    this.text = text;
-    this.dateAdd = dateAdd;
+  constructor(firstName: string, lastName: string, email: string, password: string, userRole: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.password = password;
+    this.userRole = userRole;
   }
 }

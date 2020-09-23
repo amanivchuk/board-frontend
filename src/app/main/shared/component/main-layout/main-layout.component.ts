@@ -11,6 +11,8 @@ import {UserService} from '../../../data/impl/UserService';
 import {User} from '../../../../authorization/model/User';
 import {UserUpdateDto} from '../../../data/dto/UserUpdateDto';
 import {UserUpdateEmailDto} from '../../../data/dto/UserUpdateEmailDto';
+import {UserUpdatePasswordDto} from '../../../data/dto/UserUpdatePasswordDto';
+import {BoardEditDto} from '../../../data/dto/BoardEditDto';
 
 @Component({
   selector: 'app-main-layout',
@@ -78,10 +80,10 @@ export class MainLayoutComponent implements OnInit {
     this.showSearch = showSearch;
   }
 
-  addBoard(boardCreateDto: BoardCreateDto) {
-    this.boardService.addBoard(boardCreateDto).subscribe(() => {
-      this.searchBoard(this.boardSearchValues);//обновляем список сотрудников
-    });
+  addBoard() {
+    // this.boardService.addBoard(boardCreateDto).subscribe(() => {
+    //   this.searchBoard(this.boardSearchValues);//обновляем список сотрудников
+    // });
   }
 
   editProfile(user: UserUpdateDto) {
@@ -93,6 +95,31 @@ export class MainLayoutComponent implements OnInit {
   editEmail(userUpdateEmailDto: UserUpdateEmailDto) {
     this.userService.updateEmail(userUpdateEmailDto).subscribe(result => {
       console.log('User updated successfully');
+    });
+  }
+
+  editPassword(userUpdatePasswordDto: UserUpdatePasswordDto) {
+    this.userService.updatePassword(userUpdatePasswordDto, this.userId).subscribe(result => {
+      console.log('User updated successfully');
+    });
+  }
+
+  addBoards(boardCreateDto: BoardCreateDto, formData: FormData) {
+    console.log(boardCreateDto);
+    this.boardService.addBoard(boardCreateDto, formData).subscribe(() => {
+      this.searchBoard(this.boardSearchValues);
+    });
+  }
+
+  editBoard(boardEditDto: BoardEditDto) {
+    this.boardService.updateBoard(boardEditDto).subscribe(result => {
+      this.searchBoard(this.boardSearchValues);
+    });
+  }
+
+  deleteBoard(board: Board) {
+    this.boardService.delete(board.id).subscribe(() => {
+      this.searchBoard(this.boardSearchValues);
     });
   }
 }

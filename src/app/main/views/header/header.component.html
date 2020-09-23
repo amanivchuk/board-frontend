@@ -9,11 +9,11 @@
     <mat-menu #menu="matMenu">
       <button (click)="showEditProfile()" mat-menu-item>Редактировать профиль</button>
       <button (click)="showEditEmail()" mat-menu-item>Редактировать email</button>
+      <button (click)="showEditPassword()" mat-menu-item>Редактировать пароль</button>
+
     </mat-menu>
 
-    <!--    <button (click)="showEditProfile()" class="header-icon" mat-icon-button>-->
-    <!--      <mat-icon>settings</mat-icon>-->
-    <!--    </button>-->
+    <button (click)="logout()" class="header-icon" mat-button>Выход</button>
 
     <!--    <button class="header-icon" mat-icon-button>-->
     <!--      <mat-icon>help</mat-icon>-->

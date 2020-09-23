@@ -7,6 +7,8 @@ import {DialogAction} from '../../object/DialogResult';
 import {AddBoardDialogComponent} from '../../dialog/add-board-dialog/add-board-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {BoardCreateDto} from '../../data/dto/BoardCreateDto';
+import {ShowBoardDialogComponent} from '../../dialog/show-board-dialog/show-board-dialog.component';
+import {BoardEditDto} from '../../data/dto/BoardEditDto';
 
 @Component({
   selector: 'app-board',
@@ -19,6 +21,8 @@ export class BoardComponent implements OnInit {
   totalBoardFounded: number;
   @Input()
   showSearch: boolean; //показать/скрыть поиск
+  @Input()
+  userId: number;
 
   @Output()
   paging = new EventEmitter<PageEvent>(); // переход по страницам данных
@@ -27,7 +31,11 @@ export class BoardComponent implements OnInit {
   @Output()
   toggleSearch = new EventEmitter<boolean>(); //показать/скрыть поиск
   @Output()
-  addBoard = new EventEmitter<BoardCreateDto>();
+  addBoard = new EventEmitter<{ boardCreateDto: BoardCreateDto, formData: FormData }>();
+  @Output()
+  editBoard = new EventEmitter<BoardEditDto>();
+  @Output()
+  deleteBoard = new EventEmitter<Board>();
 
   readonly defaultSortColumn = 'title';
   readonly defaultSortDirection = 'asc';
@@ -154,7 +162,7 @@ export class BoardComponent implements OnInit {
 
   openAddAdvertDialog() {
     const dialogRef = this.dialog.open(AddBoardDialogComponent, {
-      data: [new BoardCreateDto('', null, '', null),
+      data: [new BoardCreateDto('', '', null),
         'Добавление нового объявления'],
       width: '600px'
     });
@@ -165,12 +173,31 @@ export class BoardComponent implements OnInit {
       }
 
       if (result.action === DialogAction.SAVE) {
-        this.addBoard.emit(result.obj as BoardCreateDto);
+        const boardCreateDto: BoardCreateDto = result.obj as BoardCreateDto;
+        const formData: FormData = result.formData as FormData;
+        this.addBoard.emit({boardCreateDto, formData});
       }
     });
   }
 
-  openAdvertContent(boards: any) {
+  openAdvertContent(board: Board) {
+    const dialogRef = this.dialog.open(ShowBoardDialogComponent, {
+      data: [board, this.userId, 'Просмотр объявления'],
+      width: '800px'
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (!(result)) {
+        return;
+      }
+
+      if (result.action === DialogAction.SAVE) {
+        const boardEditDto = result.obj as BoardEditDto;
+        this.editBoard.emit(boardEditDto);
+      }
+      if (result.action === DialogAction.DELETE) {
+        this.deleteBoard.emit(board);
+      }
+    });
   }
 }

@@ -3,6 +3,7 @@ import {RegistrationDialogComponent} from '../../dialog/registration-dialog/regi
 import {MatDialog} from '@angular/material/dialog';
 import {User} from '../../model/User';
 import {DialogAction} from '../../object/DialogResult';
+import {UserCreateDto} from '../../../main/data/dto/UserCreateDto';
 
 @Component({
   selector: 'app-header',
@@ -24,7 +25,7 @@ export class HeaderComponent implements OnInit {
 
   registration() {
     const dialogRef = this.dialog.open(RegistrationDialogComponent, {
-      data: [new User('', '', '', '', null),
+      data: [new UserCreateDto('', '', '', '', 'USER'),
         'Создание нового пользователя'],
       width: '800px'
     });
@@ -35,7 +36,7 @@ export class HeaderComponent implements OnInit {
       }
 
       if (result.action === DialogAction.SAVE) {
-        this.createUser.emit(result.obj as User);
+        this.createUser.emit(result.obj as UserCreateDto);
       }
 
     });

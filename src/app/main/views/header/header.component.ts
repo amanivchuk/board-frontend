@@ -6,6 +6,9 @@ import {User} from '../../../authorization/model/User';
 import {UserUpdateDto} from '../../data/dto/UserUpdateDto';
 import {EditEmailDialogComponent} from '../../dialog/edit-email-dialog/edit-email-dialog.component';
 import {UserUpdateEmailDto} from '../../data/dto/UserUpdateEmailDto';
+import {EditPasswordDialogComponent} from '../../dialog/edit-password-dialog/edit-password-dialog.component';
+import {UserUpdatePasswordDto} from '../../data/dto/UserUpdatePasswordDto';
+import {AuthorizationService} from '../../../authorization/services/authorization.service';
 
 @Component({
   selector: 'app-header',
@@ -21,8 +24,13 @@ export class HeaderComponent implements OnInit {
   editProfile = new EventEmitter<UserUpdateDto>();
   @Output()
   editUserEmail = new EventEmitter<UserUpdateEmailDto>();
+  @Output()
+  editUserPassword = new EventEmitter<UserUpdatePasswordDto>();
 
-  constructor(private dialog: MatDialog) {
+  constructor(
+    private dialog: MatDialog,
+    private authorizationService: AuthorizationService
+  ) {
   }
 
   ngOnInit() {
@@ -53,7 +61,7 @@ export class HeaderComponent implements OnInit {
 
       data: [
         new UserUpdateEmailDto(this.user.email, '', ''),
-        'Редактирование данных пользователя'],
+        'Редактирование email пользователя'],
       autoFocus: false,
       width: '600px',
     });
@@ -67,5 +75,30 @@ export class HeaderComponent implements OnInit {
         this.editUserEmail.emit(result.obj as UserUpdateEmailDto);
       }
     });
+  }
+
+  showEditPassword() {
+    const dialogRef = this.dialog.open(EditPasswordDialogComponent, {
+
+      data: [
+        new UserUpdatePasswordDto(''),
+        'Редактирование пароля пользователя'],
+      autoFocus: false,
+      width: '600px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!(result)) {
+        return;
+      }
+
+      if (result.action === DialogAction.SAVE) {
+        this.editUserPassword.emit(result.obj as UserUpdatePasswordDto);
+      }
+    });
+  }
+
+  logout() {
+    this.authorizationService.logout();
   }
 }

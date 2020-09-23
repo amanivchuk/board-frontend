@@ -9,6 +9,7 @@
       <app-header
         (editProfile)="editProfile($event)"
         (editUserEmail)="editEmail($event)"
+        (editUserPassword)="editPassword($event)"
         [user]="user"
       ></app-header>
     </nav>
@@ -20,12 +21,15 @@
             <app-board
               (paging)="paging($event)"
               (searchAction)="searchBoard($event)"
-              (addBoard)="addBoard($event)"
+              (addBoard)="addBoards($event.boardCreateDto, $event.formData)"
+              (deleteBoard)="deleteBoard($event)"
+              (editBoard)="editBoard($event)"
 
               [boardSearchValues]="boardSearchValues"
               [boards]="boards"
               [showSearch]="showSearch"
               [totalBoardFounded]="totalBoardFounded"
+              [userId]="userId"
             ></app-board>
           </div>
         </div>

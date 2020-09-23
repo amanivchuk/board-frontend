@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RegistrationService} from '../../../data/impl/RegistrationService';
-import {User} from '../../../model/User';
+import {UserCreateDto} from '../../../../main/data/dto/UserCreateDto';
 
 @Component({
   selector: 'app-authorization-layout',
@@ -17,8 +17,8 @@ export class AuthorizationLayoutComponent implements OnInit {
   ngOnInit() {
   }
 
-  createUser(user: User) {
-    this.registrationService.add(user).subscribe(result => {
+  createUser(userCreateDto: UserCreateDto) {
+    this.registrationService.add(userCreateDto).subscribe(result => {
       console.log('user added ' + result);
     });
   }

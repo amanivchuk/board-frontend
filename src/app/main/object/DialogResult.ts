@@ -1,11 +1,13 @@
 export class DialogResult {
   action: DialogAction;
   obj?: any;
+  formData?: any;
 
 
-  constructor(action: DialogAction, obj?: any) {
+  constructor(action: DialogAction, obj?: any, formData?: any) {
     this.action = action;
     this.obj = obj;
+    this.formData = formData;
   }
 }
 

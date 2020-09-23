@@ -33,7 +33,7 @@ registerLocaleData(localeRu);
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true},
-    {provide: REGISTRATION_URL_TOKEN, useValue: 'http://localhost:8082/regitration'},
+    {provide: REGISTRATION_URL_TOKEN, useValue: 'http://localhost:8082/users'},
     {provide: BOARD_URL_TOKEN, useValue: 'http://localhost:8082/board'},
     {provide: USER_URL_TOKEN, useValue: 'http://localhost:8082/users'},
 
