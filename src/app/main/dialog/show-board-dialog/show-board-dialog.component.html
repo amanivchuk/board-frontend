@@ -2,39 +2,40 @@
 <hr>
 <mat-dialog-content>
 
-  <mat-form-field>
-    <mat-label>Заголовок</mat-label>
-    <input #inputTitle [(ngModel)]="board.title"
-           disabled
-           matInput
-           placeholder="Заголовок"
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Текст</mat-label>
-    <textarea #inputText [(ngModel)]="board.text"
-              disabled
-              matInput
-              placeholder="Текст"
-    ></textarea>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Дата редактирования</mat-label>
-    <input #inputDateAdd [(ngModel)]="board.dateAdd"
-           disabled
-           matInput
-           placeholder="Дата редактирования"
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Содатель</mat-label>
-    <input #inputCreated [(ngModel)]="board.user.lastName"
-           disabled
-           matInput
-           placeholder="Создано"
-    >
-  </mat-form-field>
-
+  <div class="input-style">
+    <mat-form-field>
+      <mat-label>Заголовок</mat-label>
+      <input #inputTitle [(ngModel)]="board.title" disabled
+             matInput
+             placeholder="Заголовок"
+             style="color: black"
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Текст</mat-label>
+      <textarea #inputText [(ngModel)]="board.text" disabled
+                matInput
+                placeholder="Текст"
+                rows="12"
+      ></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Дата редактирования</mat-label>
+      <input [value]="board.dateAdd | boardDate" disabled
+             matInput
+             placeholder="Дата редактирования"
+             type="text"
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Содатель</mat-label>
+      <input #inputCreated [(ngModel)]="board.user.lastName"
+             disabled
+             matInput
+             placeholder="Создано"
+      >
+    </mat-form-field>
+  </div>
 </mat-dialog-content>
 
 <hr>

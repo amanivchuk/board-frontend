@@ -37,8 +37,8 @@ export class BoardComponent implements OnInit {
   @Output()
   deleteBoard = new EventEmitter<Board>();
 
-  readonly defaultSortColumn = 'title';
-  readonly defaultSortDirection = 'asc';
+  readonly defaultSortColumn = 'dateAdd';
+  readonly defaultSortDirection = 'desc';
 
   boardSearchValues: BoardSearchValues;
   boards: Board[];

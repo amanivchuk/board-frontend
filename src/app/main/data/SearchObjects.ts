@@ -6,6 +6,6 @@ export class BoardSearchValues {
   pageSize = 10; //сколько элементов на странице (по умолчанию)
 
   //сортировка
-  sortColumn = 'title';
-  sortDirection = 'asc';
+  sortColumn = 'dateAdd';
+  sortDirection = 'desc';
 }

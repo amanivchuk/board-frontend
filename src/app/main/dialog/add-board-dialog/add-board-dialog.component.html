@@ -2,12 +2,12 @@
 <hr>
 <mat-dialog-content>
 
-  <mat-card class="example-card">
+  <!--<mat-card class="example-card">
     <img *ngIf="tmpImageURL; else employeePhoto" [src]="tmpImageURL"
          alt="Photo of a Shiba Inu" mat-card-image>
     <ng-template #employeePhoto>
       <img src="{{'data:image/jpeg;base64,'+ newPicture}}">
-      <!--            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo ">-->
+      &lt;!&ndash;            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo ">&ndash;&gt;
     </ng-template>
     <mat-card-actions>
       <input #file #fileInput (change)="fileSelected(file.files)" accept='image/*' style="display: none"
@@ -15,7 +15,7 @@
       <button (click)="fileInput.click()" mat-button>Выбрать файл</button>
     </mat-card-actions>
   </mat-card>
-
+-->
   <mat-form-field>
     <mat-label>Заголовок</mat-label>
     <input #inputTitle

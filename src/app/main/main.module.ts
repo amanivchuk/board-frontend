@@ -27,6 +27,7 @@ import {MatCardModule} from '@angular/material/card';
 import {EditBoardDialogComponent} from './dialog/edit-board-dialog/edit-board-dialog.component';
 import {ShowBoardDialogComponent} from './dialog/show-board-dialog/show-board-dialog.component';
 import {ConfirmDialogComponent} from './dialog/confirm-dialog/confirm-dialog.component';
+import {BoardDatePipe} from './pipe/board-date.pipe';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {ConfirmDialogComponent} from './dialog/confirm-dialog/confirm-dialog.com
     EditBoardDialogComponent,
     ShowBoardDialogComponent,
     ConfirmDialogComponent,
+    BoardDatePipe
   ],
   imports: [
     RouterModule.forChild([

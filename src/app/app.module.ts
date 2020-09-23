@@ -10,7 +10,6 @@ import localeRu from '@angular/common/locales/ru';
 import {SharedModule} from './main/shared/shared.module';
 import {AuthorizationInterceptor} from './main/shared/authorization.interceptor';
 import {REGISTRATION_URL_TOKEN} from './authorization/data/impl/RegistrationService';
-import {BoardDatePipe} from './main/pipe/board-date.pipe';
 import {BOARD_URL_TOKEN} from './main/data/impl/BoardService';
 import {USER_URL_TOKEN} from './main/data/impl/UserService';
 
@@ -20,7 +19,6 @@ registerLocaleData(localeRu);
 @NgModule({
   declarations: [
     AppComponent,
-    BoardDatePipe,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +36,7 @@ registerLocaleData(localeRu);
     {provide: USER_URL_TOKEN, useValue: 'http://localhost:8082/users'},
 
   ],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

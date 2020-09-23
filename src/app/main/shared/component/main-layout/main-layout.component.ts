@@ -39,6 +39,7 @@ export class MainLayoutComponent implements OnInit {
     private boardService: BoardService,
     private userService: UserService
   ) {
+    this.spinner = spinnerService;
     this.searchBoard(this.boardSearchValues);
   }
 

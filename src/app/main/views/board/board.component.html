@@ -27,8 +27,10 @@
       <mat-select
         (selectionChange)="checkFilterChanged()"
         [(ngModel)]="filterSortColumn"
+        disableOptionCentering
         placeholder="Сортировка"
       >
+        <mat-option value="dateAdd">Дата создания</mat-option>
         <mat-option value='title'>Заголовок</mat-option>
       </mat-select>
     </mat-form-field>
@@ -64,7 +66,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-2 col-sm-12">
+  <div class="col-md-4 col-sm-12">
     <button
       (click)="openAddAdvertDialog()"
       [ngClass]="{'full-width': true}"
@@ -74,10 +76,10 @@
     </button>
   </div>
 
-  <div class="col-md-2 col-sm-12 text-left align-middle-align-self-center">
-    <span (click)="onToggleSearch()" *ngIf="showSearch" class="link">Скрыть список</span>
-    <span (click)="onToggleSearch()" *ngIf="!showSearch" class="link">Показать список</span>
-  </div>
+  <!--  <div class="col-md-2 col-sm-12 text-left align-middle-align-self-center">-->
+  <!--    <span (click)="onToggleSearch()" *ngIf="showSearch" class="link">Скрыть список</span>-->
+  <!--    <span (click)="onToggleSearch()" *ngIf="!showSearch" class="link">Показать список</span>-->
+  <!--  </div>-->
 
   <div class="col-md-8 align-middle-align-self-center text-right pr-5">
         <span class="founded">
@@ -141,7 +143,7 @@
           <ng-container matColumnDef="dateAdd">
             <th *matHeaderCellDef mat-header-cell>Добавлено</th>
             <td *matCellDef="let boards" class="col-opr" mat-cell>
-              {{boards.dateAdd}}
+              {{boards.dateAdd | boardDate}}
             </td>
           </ng-container>
 

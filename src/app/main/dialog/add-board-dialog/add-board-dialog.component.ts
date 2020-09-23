@@ -18,7 +18,7 @@ export class AddBoardDialogComponent implements OnInit {
   newTitle: string = '';
   newText: string = '';
 
-  selectedFile: File = null;
+  selectedFile: File;
 
   tmpMessage: string;
   tmpImageURL: any;
@@ -40,10 +40,9 @@ export class AddBoardDialogComponent implements OnInit {
   confirm(): void {
 
     const uploadAvatarData = new FormData();
-    uploadAvatarData.append('imageFile', this.selectedFile, this.selectedFile.name);
+    // uploadAvatarData.append('imageFile', this.selectedFile, this.selectedFile.name);
 
     this.board.title = this.newTitle;
-    // this.board.picture =uploadAvatarData;
     this.board.text = this.newText;
     this.board.dateAdd = new Date();
 

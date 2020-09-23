@@ -144,21 +144,3 @@ app-header {
   width: 50%;
   height: 50%;
 }
-
-.add-employee .mat-stepper-label-position-bottom .mat-horizontal-stepper-header {
-  padding: 10px;
-}
-
-.add-employee .mat-stepper-label-position-bottom .mat-horizontal-stepper-header .mat-step-label {
-  padding: 0;
-}
-
-.add-employee .mat-step-header.cdk-keyboard-focused, .mat-step-header.cdk-program-focused, .mat-step-header:hover {
-  background-color: rgba(0, 0, 0, 0);
-}
-
-.add-employee .button-row button {
-  margin: 5px;
-  background-color: black;
-  color: white;
-}
