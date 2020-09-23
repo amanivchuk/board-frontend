@@ -18,6 +18,7 @@ export class AuthorizationLayoutComponent implements OnInit {
   }
 
   createUser(userCreateDto: UserCreateDto) {
+    userCreateDto.userRole = 'USER';
     this.registrationService.add(userCreateDto).subscribe(result => {
       console.log('user added ' + result);
     });

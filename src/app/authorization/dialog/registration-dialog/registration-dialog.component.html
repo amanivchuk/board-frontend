@@ -46,7 +46,7 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label>Пароль</mat-label>
-    <input #inputPassword
+    <input #inputPassword type="password"
            [(ngModel)]="newPassword"
            matInput
            placeholder="Пароль"
@@ -60,7 +60,7 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label>Повторить пароль</mat-label>
-    <input #inputConfirmPassword
+    <input #inputConfirmPassword type="password"
            [(ngModel)]="confirmNewPassword"
            matInput
            placeholder="Повторить пароль"

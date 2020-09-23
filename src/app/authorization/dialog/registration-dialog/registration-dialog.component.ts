@@ -37,6 +37,7 @@ export class RegistrationDialogComponent implements OnInit {
     this.user.firstName = this.newFirstName;
     this.user.email = this.newEmail;
     this.user.password = this.newPassword;
+    // this.user.userRole = 'USER';
 
     this.dialogRef.close(new DialogResult(DialogAction.SAVE, this.user));
   }
