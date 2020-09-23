@@ -5,9 +5,15 @@
 
   <!--помощь, настройки-->
   <div class="col-4 text-right align-self-top">
-    <button (click)="showEditProfile()" class="header-icon" mat-icon-button>
-      <mat-icon>settings</mat-icon>
-    </button>
+    <button [matMenuTriggerFor]="menu" mat-button>Настройки</button>
+    <mat-menu #menu="matMenu">
+      <button (click)="showEditProfile()" mat-menu-item>Редактировать профиль</button>
+      <button (click)="showEditEmail()" mat-menu-item>Редактировать email</button>
+    </mat-menu>
+
+    <!--    <button (click)="showEditProfile()" class="header-icon" mat-icon-button>-->
+    <!--      <mat-icon>settings</mat-icon>-->
+    <!--    </button>-->
 
     <!--    <button class="header-icon" mat-icon-button>-->
     <!--      <mat-icon>help</mat-icon>-->

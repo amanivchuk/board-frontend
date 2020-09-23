@@ -19,6 +19,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {AddBoardDialogComponent} from './dialog/add-board-dialog/add-board-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {EditProfileDialogComponent} from './dialog/edit-profile-dialog/edit-profile-dialog.component';
+import {MatMenuModule} from '@angular/material/menu';
+import {EditEmailDialogComponent} from './dialog/edit-email-dialog/edit-email-dialog.component';
+import {ConfirmPasswordDialogComponent} from './dialog/confirm-password-dialog/confirm-password-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,8 @@ import {EditProfileDialogComponent} from './dialog/edit-profile-dialog/edit-prof
     BoardComponent,
     AddBoardDialogComponent,
     EditProfileDialogComponent,
+    EditEmailDialogComponent,
+    ConfirmPasswordDialogComponent,
   ],
   imports: [
     RouterModule.forChild([
@@ -46,6 +51,7 @@ import {EditProfileDialogComponent} from './dialog/edit-profile-dialog/edit-prof
     MatPaginatorModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatMenuModule,
   ],
   exports: [RouterModule],
   providers: [],

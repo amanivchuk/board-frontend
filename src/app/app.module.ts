@@ -12,6 +12,7 @@ import {AuthorizationInterceptor} from './main/shared/authorization.interceptor'
 import {REGISTRATION_URL_TOKEN} from './authorization/data/impl/RegistrationService';
 import {BoardDatePipe} from './main/pipe/board-date.pipe';
 import {BOARD_URL_TOKEN} from './main/data/impl/BoardService';
+import {USER_URL_TOKEN} from './main/data/impl/UserService';
 
 
 registerLocaleData(localeRu);
@@ -34,6 +35,7 @@ registerLocaleData(localeRu);
     {provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true},
     {provide: REGISTRATION_URL_TOKEN, useValue: 'http://localhost:8082/regitration'},
     {provide: BOARD_URL_TOKEN, useValue: 'http://localhost:8082/board'},
+    {provide: USER_URL_TOKEN, useValue: 'http://localhost:8082/users'},
 
   ],
   bootstrap: [AppComponent]

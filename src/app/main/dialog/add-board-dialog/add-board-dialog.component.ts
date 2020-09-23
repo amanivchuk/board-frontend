@@ -27,6 +27,7 @@ export class AddBoardDialogComponent implements OnInit {
   ngOnInit(): void {
     this.board = this.data[0];
     this.dialogTitle = this.data[1];
+
   }
 
 
