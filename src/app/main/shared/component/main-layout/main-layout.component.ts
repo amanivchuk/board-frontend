@@ -34,7 +34,6 @@ export class MainLayoutComponent implements OnInit {
   userId: number;
   user: User;
 
-
   constructor(
     private spinnerService: SpinnerService,
     private boardService: BoardService,
