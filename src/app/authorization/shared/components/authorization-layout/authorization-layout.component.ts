@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {RegistrationService} from '../../../data/impl/RegistrationService';
 import {UserCreateDto} from '../../../../main/data/dto/UserCreateDto';
+import {AlertService} from '../../../../main/service/alert.service';
 
 @Component({
   selector: 'app-authorization-layout',
@@ -10,7 +11,8 @@ import {UserCreateDto} from '../../../../main/data/dto/UserCreateDto';
 export class AuthorizationLayoutComponent implements OnInit {
 
   constructor(
-    private registrationService: RegistrationService
+    private registrationService: RegistrationService,
+    private alertService: AlertService
   ) {
   }
 
@@ -20,7 +22,7 @@ export class AuthorizationLayoutComponent implements OnInit {
   createUser(userCreateDto: UserCreateDto) {
     userCreateDto.userRole = 'USER';
     this.registrationService.add(userCreateDto).subscribe(result => {
-      console.log('user added ' + result);
+      this.alertService.success('Вы успешо зарегистрировались!');
     });
   }
 }

@@ -31,7 +31,7 @@ export class AuthorizationInterceptor implements HttpInterceptor {
       .handle(req)
       .pipe(
         tap((event: HttpEvent<any>) => {
-          console.log('Intercept');
+          // console.log('Intercept');
           if (event instanceof HttpResponse) { //пришел ответ - значит запрос завершен
             this.spinnerService.hide(); //когда запрос выполнился - убрать спиннер
           }
@@ -39,7 +39,7 @@ export class AuthorizationInterceptor implements HttpInterceptor {
           this.spinnerService.hide(); //если возникла ошибка - убрать спиннер
         }),
         catchError((error: HttpErrorResponse) => {
-          console.log('[Interceptor Error]', error);
+          // console.log('[Interceptor Error]', error);
           if (error.status === 401) {
             this.auth.logout();
             this.router.navigate(['/authorization', 'login'], {

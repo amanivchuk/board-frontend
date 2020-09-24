@@ -18,7 +18,7 @@ export class AuthorizationGuard implements CanActivate {
   ): Observable<boolean> | Promise<boolean> | boolean {
 
     if (this.authorizationService.isAuthenticated()) {
-      console.log('authorized!');
+      // console.log('authorized!');
       return true;
     } else {
       this.authorizationService.logout();

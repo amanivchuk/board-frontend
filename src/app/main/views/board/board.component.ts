@@ -82,7 +82,7 @@ export class BoardComponent implements OnInit {
     if (!this.dataSource) {
       return;
     }
-    console.log(this.boards);
+    // console.log(this.boards);
     this.dataSource.data = this.boards;
   }
 

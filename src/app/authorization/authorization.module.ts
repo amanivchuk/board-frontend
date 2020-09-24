@@ -14,6 +14,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {AboutDialogComponent} from './dialog/about-dialog/about-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {MatInputModule} from '@angular/material/input';
     RegistrationDialogComponent,
     HeaderComponent,
     FooterComponent,
+    AboutDialogComponent,
   ],
   imports: [
     CommonModule,

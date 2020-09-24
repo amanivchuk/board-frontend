@@ -4,6 +4,7 @@ import {FbAuthorizationResponseJWT, UserAuthorizationJWT} from '../interfaces';
 import {Observable, Subject, throwError} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {AlertService} from '../../main/service/alert.service';
 
 @Injectable({providedIn: 'root'})
 export class AuthorizationService {
@@ -12,7 +13,9 @@ export class AuthorizationService {
 
   constructor(
     private router: Router,
-    private http: HttpClient) {
+    private http: HttpClient,
+    private alertService: AlertService
+  ) {
   }
 
   get token(): string {
@@ -28,7 +31,8 @@ export class AuthorizationService {
     return this.http.post(`http://localhost:8082/authentication/login`, userAuthorization)
       .pipe(
         tap(this.setToken),
-        catchError(this.handleError.bind(this))
+        catchError(
+          this.handleError.bind(this))
       );
   }
 
@@ -43,19 +47,15 @@ export class AuthorizationService {
 
   private handleError(error: HttpErrorResponse) {
 
-    const message = error.error;
+    const message = error.error.error;
+    console.log(error.error.error);
+
     switch (message) {
-      case 'INVALID_CREDENTIALS':
+      case 'Bad Request':
         this.error$.next('Невернвый логин');
         break;
-      case 'INVALID_EMAIL':
-        this.error$.next('Невеонвый email');
-        break;
-      case 'INVALID_PASSWORD':
-        this.error$.next('Невеонвый пароль');
-        break;
-      case 'EMAIL_NOT_FOUND':
-        this.error$.next('Такого email нет');
+      case 'Unauthorized':
+        this.error$.next('Невернвый пароль');
         break;
     }
 

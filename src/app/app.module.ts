@@ -12,6 +12,7 @@ import {AuthorizationInterceptor} from './main/shared/authorization.interceptor'
 import {REGISTRATION_URL_TOKEN} from './authorization/data/impl/RegistrationService';
 import {BOARD_URL_TOKEN} from './main/data/impl/BoardService';
 import {USER_URL_TOKEN} from './main/data/impl/UserService';
+import {AlertService} from './main/service/alert.service';
 
 
 registerLocaleData(localeRu);
@@ -34,7 +35,7 @@ registerLocaleData(localeRu);
     {provide: REGISTRATION_URL_TOKEN, useValue: 'http://localhost:8082/users'},
     {provide: BOARD_URL_TOKEN, useValue: 'http://localhost:8082/board'},
     {provide: USER_URL_TOKEN, useValue: 'http://localhost:8082/users'},
-
+    AlertService
   ],
   exports: [],
   bootstrap: [AppComponent]

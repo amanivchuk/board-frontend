@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {AboutDialogComponent} from '../../dialog/about-dialog/about-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-footer',
@@ -9,13 +11,24 @@ export class FooterComponent implements OnInit {
 
   year: Date;
   site = '';
-  siteName = 'UkSatse Staff';
+  siteName = 'Bulletin Board';
 
-  constructor() {
-    this.year = new Date();
+  constructor(private dialog: MatDialog) {
   }
 
   ngOnInit() {
+    this.year = new Date();
+  }
+
+  openAboutDialog() {
+    this.dialog.open(AboutDialogComponent, {
+      autoFocus: false,
+      data: {
+        dialogTitle: 'About',
+        message: 'Bulletin Board Test Project'
+      },
+      width: '400px'
+    });
   }
 
 }

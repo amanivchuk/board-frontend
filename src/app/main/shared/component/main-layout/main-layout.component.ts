@@ -13,6 +13,7 @@ import {UserUpdateDto} from '../../../data/dto/UserUpdateDto';
 import {UserUpdateEmailDto} from '../../../data/dto/UserUpdateEmailDto';
 import {UserUpdatePasswordDto} from '../../../data/dto/UserUpdatePasswordDto';
 import {BoardEditDto} from '../../../data/dto/BoardEditDto';
+import {AlertService} from '../../../service/alert.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -37,7 +38,8 @@ export class MainLayoutComponent implements OnInit {
   constructor(
     private spinnerService: SpinnerService,
     private boardService: BoardService,
-    private userService: UserService
+    private userService: UserService,
+    private alertService: AlertService
   ) {
     this.spinner = spinnerService;
     this.searchBoard(this.boardSearchValues);
@@ -54,11 +56,13 @@ export class MainLayoutComponent implements OnInit {
       let token = localStorage.getItem('token');
       let token2 = token.substring(7, token.length);
       this.userId = jwt_decode(token2).userId;
-      console.log(this.userId);
+      // console.log(this.userId);
 
       this.userService.get(this.userId).subscribe(result => {
         this.user = result;
-        console.log(this.user);
+        // console.log(this.user);
+      }, error => {
+        this.alertService.danger('Ошибка загрузки данных!');
       });
     })
   }
@@ -81,46 +85,55 @@ export class MainLayoutComponent implements OnInit {
     this.showSearch = showSearch;
   }
 
-  addBoard() {
-    // this.boardService.addBoard(boardCreateDto).subscribe(() => {
-    //   this.searchBoard(this.boardSearchValues);//обновляем список сотрудников
-    // });
-  }
-
   editProfile(user: UserUpdateDto) {
     this.userService.updateUser(user, this.userId).subscribe(result => {
-      console.log('User updated successfully');
+      this.alertService.success('Данные успешно обновлены!');
+
+    }, error => {
+      this.alertService.danger('Ошибка сохранения!');
     });
   }
 
   editEmail(userUpdateEmailDto: UserUpdateEmailDto) {
     this.userService.updateEmail(userUpdateEmailDto).subscribe(result => {
-      console.log('User updated successfully');
+      this.alertService.success('Email успешно обновлен!');
+    }, error => {
+      this.alertService.danger('Ошибка сохранения!');
     });
   }
 
   editPassword(userUpdatePasswordDto: UserUpdatePasswordDto) {
     this.userService.updatePassword(userUpdatePasswordDto, this.userId).subscribe(result => {
-      console.log('User updated successfully');
+      this.alertService.success('Пароль успешно обновлен!');
+    }, error => {
+      this.alertService.danger('Ошибка сохранения!');
     });
   }
 
   addBoards(boardCreateDto: BoardCreateDto, formData: FormData) {
-    console.log(boardCreateDto);
     this.boardService.addBoard(boardCreateDto, formData).subscribe(() => {
+      this.alertService.success('Новое объявление успешно добавлено!');
       this.searchBoard(this.boardSearchValues);
+    }, error => {
+      this.alertService.danger('Ошибка создания объявления!');
     });
   }
 
   editBoard(boardEditDto: BoardEditDto) {
     this.boardService.updateBoard(boardEditDto).subscribe(result => {
+      this.alertService.success('Объявление успешно изменено!');
       this.searchBoard(this.boardSearchValues);
+    }, error => {
+      this.alertService.danger('Ошибка редактирования!');
     });
   }
 
   deleteBoard(board: Board) {
     this.boardService.delete(board.id).subscribe(() => {
+      this.alertService.success('Объявление удалено!');
       this.searchBoard(this.boardSearchValues);
+    }, error => {
+      this.alertService.danger('Ошибка удаления!');
     });
   }
 }

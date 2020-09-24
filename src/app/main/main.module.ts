@@ -28,6 +28,7 @@ import {EditBoardDialogComponent} from './dialog/edit-board-dialog/edit-board-di
 import {ShowBoardDialogComponent} from './dialog/show-board-dialog/show-board-dialog.component';
 import {ConfirmDialogComponent} from './dialog/confirm-dialog/confirm-dialog.component';
 import {BoardDatePipe} from './pipe/board-date.pipe';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import {BoardDatePipe} from './pipe/board-date.pipe';
     MatProgressSpinnerModule,
     MatMenuModule,
     MatCardModule,
+    SharedModule,
   ],
   exports: [RouterModule],
   providers: [],
